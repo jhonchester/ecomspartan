@@ -27,7 +27,9 @@ Manage Category | Admin
                                         <td>{{$cat->id}}</td>
                                         <td>{{$cat->category_name}}</td>
                                         <td>
-                                            <a href="#" class="btn btn-danger" onclick="confirm('Are you sure you want to delete this category?')">Delete</a>
+                                            <a href="{{route('show.cat', $cat->id)}}" class="btn btn-info">Edit</a>
+                                            <a href="{{}}" class="btn btn-danger">Delete</a>
+                                            
                                         </td>
                                     </tr>
                                 @endforeach
