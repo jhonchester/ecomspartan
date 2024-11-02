@@ -92,7 +92,41 @@
 					</li>
 
 					<li class="sidebar-header">
-						Product
+						Store
+					</li>
+
+					<li class="sidebar-item {{ request()->routeIs('store.create') ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{ route('store.create') }}">
+							<i class="align-middle" data-feather="shopping-bag"></i> 
+							<span class="align-middle">Create Store</span>
+						</a>
+					</li>
+					<li class="sidebar-item {{ request()->routeIs('store.manage') ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{ route('store.manage') }}">
+							<i class="align-middle" data-feather="list"></i> 
+							<span class="align-middle">Manage Store</span>
+						</a>
+					</li>
+
+					<li class="sidebar-header">
+						Products
+					</li>
+
+					<li class="sidebar-item {{ request()->routeIs('product.manage') ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{ route('product.manage') }}">
+							<i class="align-middle" data-feather="shopping-bag"></i> 
+							<span class="align-middle">Create Item</span>
+						</a>
+					</li>
+					<li class="sidebar-item {{ request()->routeIs('product.manage') ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{ route('product.manage') }}">
+							<i class="align-middle" data-feather="list"></i> 
+							<span class="align-middle">Manage Item</span>
+						</a>
+					</li>
+
+					<li class="sidebar-header">
+						Product Delivered
 					</li>
 
 					<li class="sidebar-item {{ request()->routeIs('product.manage') ? 'active' : '' }}">

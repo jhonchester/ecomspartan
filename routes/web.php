@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Customer\CustomerMainController;
 use App\Http\Controllers\MasterCategoryController;
 use App\Http\Controllers\MasterSubCategoryController;
+use App\Http\Controllers\Admin\StoreController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -45,6 +46,12 @@ Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () 
             Route::get('/product/review/manage', 'review_manage')->name('product.review.manage');
         });
 
+        Route::controller(StoreController::class)->group(function(){
+            Route::get('/store/create', 'index')->name('store.create'); // This is correct
+            Route::get('/store/manage', 'storemanage')->name('store.manage'); 
+            Route::post('/store/publish', 'store')->name('create.store'); // This is correct
+        });
+    
         Route::controller(ProductAttribute::class)->group(function(){
             Route::get('/productattribute/create', 'index')->name('productattribute.create');
             Route::get('/productattribute/manage', 'manage')->name('productattribute.manage');

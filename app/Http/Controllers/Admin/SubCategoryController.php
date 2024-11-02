@@ -17,9 +17,8 @@ class SubCategoryController extends Controller
         // Return the view with categories
         return view('admin.subcategory.create', compact('categories'));
     }
-    public function manage()
-{
-    $subcategories = SubCategoryModel::with('category')->get();
-    return view('admin.subcategory.manage', compact('subcategories'));
-}
+    public function manage(){
+        $subcategories = SubCategoryModel::with('category')->get();
+        return view('admin.subcategory.manage', compact('subcategories'));
+    }
 }
