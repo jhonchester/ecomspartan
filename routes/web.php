@@ -6,15 +6,14 @@ use App\Http\Controllers\Admin\ProductAttribute;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Customer\CustomerMainController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified', 'rolemanager:user'])->name('dashboard');
+
 
 
 //adminroutes
@@ -54,6 +53,22 @@ Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () 
 
 
 
+//customerroutes
+
+
+    Route::middleware(['auth', 'verified', 'rolemanager:user'])->group(function () {
+        Route::prefix('user')->group(function (){
+            Route::controller(CustomerMainController::class)->group(function(){
+                Route::get('/dashboard', 'index')->name('dashboard');
+                Route::get('/order/history', 'history')->name('customer.history');
+                Route::get('/setting/payment', 'payment')->name('customer.payment');
+               
+            });
+    
+          
+    
+        });
+    });
 
 
 Route::middleware('auth')->group(function () {
