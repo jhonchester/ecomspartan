@@ -113,8 +113,8 @@
 						History
 					</li>
 
-					<li class="sidebar-item {{ request()->routeIs('product.manage') ? 'active' : '' }}">
-						<a class="sidebar-link" href="{{ route('product.manage') }}">
+					<li class="sidebar-item {{ request()->routeIs('admin.order.history') ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{ route('admin.order.history') }}">
 							<i class="align-middle" data-feather="shopping-bag"></i> 
 							<span class="align-middle">Orders</span>
 						</a>
@@ -301,7 +301,14 @@
 								<a class="dropdown-item" href="index.html"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
 								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Log out</a>
+								<form method="POST" action="{{ route('logout') }}">
+									@csrf
+									<a class="dropdown-item" href="#" onclick="event.preventDefault(); this.closest('form').submit();">
+										Log out
+									</a>
+								</form>
+
+								
 							</div>
 						</li>
 					</ul>
