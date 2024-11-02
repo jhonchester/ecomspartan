@@ -20,7 +20,20 @@ class MasterCategoryController extends Controller
     public function showcat($id) { // Corrected here
         $category_info = CategoryModel::find($id);
         return view('admin.category.edit', compact('category_info'));
+    }
 
-        
+    public function updatecat(Request $request, $id){
+        $category = CategoryModel::findOrFail($id);
+        $validate_data = $request->validate([
+            'category_name' => 'unique:category_models|max:100|min:5',
+        ]);
+
+        $category->update($validate_data);
+        return redirect()->back()->with('message', 'Category updated successfully!');
+    }
+
+    public function deletecat($id){
+        CategoryModel::findOrFail($id)->delete();
+        return redirect()->back()->with('message', 'Category deleted successfully!');
     }
 }

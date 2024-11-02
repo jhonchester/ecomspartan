@@ -11,6 +11,11 @@ Manage Category | Admin
                 <div class="card-header">
                     <h5 class="mb-0">Category List</h5>
                 </div>
+                @if (session('message'))
+                    <div class="alert alert-success">
+                        {{session('message')}}
+                    </div>
+                @endif
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped">
@@ -28,7 +33,14 @@ Manage Category | Admin
                                         <td>{{$cat->category_name}}</td>
                                         <td>
                                             <a href="{{route('show.cat', $cat->id)}}" class="btn btn-info">Edit</a>
-                                            <a href="{{}}" class="btn btn-danger">Delete</a>
+                                            
+                                            <a href="#" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $cat->id }}').submit();">Delete</a>
+
+                                            <form id="delete-form-{{ $cat->id }}" action="{{ route('delete.cat', $cat->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                                                                        
                                             
                                         </td>
                                     </tr>
